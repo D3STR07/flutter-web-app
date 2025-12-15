@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1071722667674",
+    "project_id": "reina-nochebuena",
+    "storage_bucket": "reina-nochebuena.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071722667674:android:a4a383e27a74867ef70923",
+        "android_client_info": {
+          "package_name": "com.example.reina_nochebuena"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHLX8QCx3xX9feisf1a5iCfJPf-XCOWE8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

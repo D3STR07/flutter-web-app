@@ -1,0 +1,48 @@
+name: reina_nochebuena
+description: Sistema de calificación para certamen Señorita Noche Buena
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.10.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Firebase
+  firebase_core: ^4.2.1 # Asegúrate de usar la última versión estable
+  firebase_auth: ^6.1.2 # Si usas autenticación
+  cloud_firestore: ^6.1.0 # Si usas Firestore
+
+  # UI y fuentes
+  google_fonts: ^6.3.3
+  
+  
+  # Estado
+  provider: ^6.1.5+1
+  sqflite: ^2.4.2
+  path: ^1.9.1
+  connectivity_plus: ^7.0.0
+  http: ^1.6.0
+  intl: ^0.20.2
+  uuid: ^4.5.2
+  printing: ^5.14.2
+  pdf: ^3.11.3
+  animations: ^2.1.1
+  flutter_svg: ^2.2.3
+  path_provider: ^2.1.5
+  open_file: ^3.5.10
+  excel: ^4.0.6
+  syncfusion_flutter_xlsio: ^29.2.11
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  
+
+flutter:
+  uses-material-design: true
+  
