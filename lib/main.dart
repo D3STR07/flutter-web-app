@@ -1,13 +1,14 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:reina_nochebuena/inserarta5jueces.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
 import 'firebase_options.dart';
 import 'service/sync_service.dart';
 import 'utils/helpers/database_helper.dart';
 
 // Constantes
-import 'package:reina_nochebuena/utils/constants/app_strings.dart';
-import 'package:reina_nochebuena/utils/constants/app_colors.dart';
+import 'utils/constants/app_strings.dart';
+import 'utils/constants/app_colors.dart';
 
 // Pantallas
 import 'ui/screens/welcome_screen.dart';
@@ -19,35 +20,36 @@ import 'ui/screens/admin/admin_dashboard_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // 🔑 CLAVE PARA GITHUB PAGES (HASH ROUTING)
+  setUrlStrategy(const HashUrlStrategy());
+
   // Inicializar Firebase
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    print('✅ Firebase inicializado correctamente');
+    debugPrint('✅ Firebase inicializado correctamente');
   } catch (e) {
-    print('❌ Error inicializando Firebase: $e');
+    debugPrint('❌ Error inicializando Firebase: $e');
   }
 
-  // INICIALIZAR BASE DE DATOS SQLite
+  // Inicializar SQLite
   try {
     final dbHelper = DatabaseHelper();
     await dbHelper.initCalificacionesTables();
-    print('✅ SQLite inicializado correctamente');
+    debugPrint('✅ SQLite inicializado correctamente');
   } catch (e) {
-    print('❌ Error inicializando SQLite: $e');
+    debugPrint('❌ Error inicializando SQLite: $e');
   }
 
-  // Iniciar servicio de sincronización
+  // Servicio de sincronización
   final syncService = SyncService();
   syncService.startMonitoring();
 
-  // Cargar cache inicial
   WidgetsBinding.instance.addPostFrameCallback((_) {
     syncService.cargarCacheParticipantes();
   });
 
-  //await subirAdmins();
   runApp(const MyApp());
 }
 
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Reina Nochebuena',
+      title: AppStrings.appName,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: AppColors.primaryBackground,
         colorScheme: ColorScheme.dark(
@@ -86,8 +88,6 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/participantes': (context) => const ParticipantesScreen(),
         '/etapas': (context) => const EtapasScreen(),
-        
-        // Ruta temporal para admin
         '/admin-home': (context) => const AdminDashboardScreen(),
       },
     );
